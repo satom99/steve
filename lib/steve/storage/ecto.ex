@@ -73,8 +73,13 @@ defmodule Steve.Storage.Ecto do
       set: [status: :running, node: Config.node()],
       inc: [retry: 1]
     ]
-    {_count, list} = update_all(query, changes)
-    Enum.map(list, &decode/1)
+
+    case update_all(query, changes) do
+      {_count, list} ->
+        list
+        |> Enum.map(&decode/1)
+        |> Enum.filter(& &1)
+    end
   end
 
   def ack(%Job{id: id}) do
@@ -105,8 +110,9 @@ defmodule Steve.Storage.Ecto do
     object = Schema.changeset(stored, changes)
 
     case update(object) do
-      {:ok, %{queue: queue}} ->
+      {:ok, %{status: :failed, queue: queue}} ->
         expired(queue)
+      {:ok, _struct} ->
         :ok
       {:error, _changeset} ->
         :error
@@ -146,7 +152,7 @@ defmodule Steve.Storage.Ecto do
   defp decode(%Schema{content: binary}) do
     :erlang.binary_to_term(binary)
   rescue
-    _malformed -> :ignore
+    _malformed -> false
   end
 
   defp repository do
