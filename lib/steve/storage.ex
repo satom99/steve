@@ -23,8 +23,8 @@ defmodule Steve.Storage do
   def dequeue(queue, count) do
     adapter().dequeue(queue, count)
   end
-  def recover(queue) do
-    adapter().recover(queue)
+  def recover!(queue) do
+    adapter().recover!(queue)
   end
 
   defp adapter do
@@ -65,7 +65,7 @@ defmodule Steve.Storage do
       def dequeue(queue, count)
 
       @doc false
-      def recover(queue)
+      def recover!(queue)
 
       defoverridable [start_link: 1]
       defoverridable [child_spec: 1]
@@ -76,5 +76,5 @@ defmodule Steve.Storage do
   @callback retry(Job.t) :: :ok | :error
   @callback enqueue(Job.t, DateTime.t) :: :ok | :error
   @callback dequeue(String.t, pos_integer) :: list | :error
-  @callback recover(String.t) :: :ok | no_return
+  @callback recover!(String.t) :: :ok | no_return
 end

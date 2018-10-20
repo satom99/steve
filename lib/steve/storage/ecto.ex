@@ -119,7 +119,7 @@ defmodule Steve.Storage.Ecto do
     end
   end
 
-  def recover(queue) do
+  def recover!(queue) do
     query = from(
       job in Schema,
       where: job.node == ^Config.node(),

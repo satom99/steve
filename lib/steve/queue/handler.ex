@@ -23,7 +23,7 @@ defmodule Steve.Queue.Handler do
   end
 
   def handle_info(:recover, state) do
-    Storage.recover(state.queue)
+    Storage.recover!(state.queue)
     {:noreply, state, 0}
   end
 
