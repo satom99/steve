@@ -46,8 +46,9 @@ defmodule Steve.Storage do
       @doc false
       def child_spec(_options) do
         %{
-          id: :none,
-          start: {__MODULE__, :start_link, [:!]}
+          id: __MODULE__,
+          start: {__MODULE__, :start_link, [:!]},
+          type: :supervisor
         }
       end
 

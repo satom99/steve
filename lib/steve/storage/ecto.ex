@@ -95,7 +95,7 @@ defmodule Steve.Storage.Ecto do
     end
   end
 
-  def retry(%Job{id: id, worker: worker, max_retries: maximum, expiry_days: expiry}) do
+  def retry(%Job{id: id, queue: queue, worker: worker, max_retries: maximum, expiry_days: expiry}) do
     stored = get_by!(status: :running, uuid: id)
     changes = case stored do
       %{retry: count} when count < maximum ->
@@ -110,7 +110,7 @@ defmodule Steve.Storage.Ecto do
     object = Schema.changeset(stored, changes)
 
     case update(object) do
-      {:ok, %{status: :failed, queue: queue}} ->
+      {:ok, %{status: :failed}} ->
         expired(queue)
       {:ok, _struct} ->
         :ok
