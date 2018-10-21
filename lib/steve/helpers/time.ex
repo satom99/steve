@@ -1,7 +1,7 @@
 defmodule Steve.Time do
   @moduledoc false
 
-  import DateTime
+  import DateTime, except: [to_string: 1]
 
   def now, do: utc_now()
 
@@ -11,5 +11,16 @@ defmodule Steve.Time do
     |> :erlang.+(value * 1000000)
     |> round
     |> from_unix!(:microseconds)
+  end
+
+  def score(time \\ now()) do
+    time
+    |> to_unix(:microseconds)
+    |> :erlang./(1000000)
+    |> to_string
+  end
+
+  def future?(time) do
+    diff(time, now()) > 0
   end
 end
