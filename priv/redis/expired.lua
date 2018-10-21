@@ -1,4 +1,4 @@
-local array = redis.call("ZRANGEBYSCORE", KEYS[1], 0, KEYS[2], "limit", 0, ARGV[2])
+local array = redis.call("ZRANGEBYSCORE", KEYS[1], 0, KEYS[2])
 
 for _,job in ipairs(array) do
   local hash = string.format("steve:jobs:%s", job)
