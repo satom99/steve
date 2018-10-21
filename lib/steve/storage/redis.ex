@@ -1,4 +1,23 @@
 defmodule Steve.Storage.Redis do
+  @moduledoc """
+  A storage adapter that uses Redix to interact with redis.
+
+  ### Configuration
+
+  The application must be configured as shown below.
+  ```elixir
+  config :steve,
+  [
+    storage: Steve.Storage.Redis,
+    pool_size: 1, # optional
+    redix: <term>
+  ]
+  ```
+  Where `redix` should be valid arguments for `Redix.start_link/1`
+  and `pool_size` an integer indicating the number of active
+  connections to the redis server the pool should have.
+  """
+
   use Steve.Storage
 
   alias Steve.Storage.Redis.{Pool, Atomic}
