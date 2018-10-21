@@ -13,4 +13,4 @@ deploy:
   skip-cleanup: true
   keep-history: true
   on:
-    branch: source
+    branch: master

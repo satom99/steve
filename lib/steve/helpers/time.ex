@@ -19,8 +19,4 @@ defmodule Steve.Time do
     |> :erlang./(1000000)
     |> to_string
   end
-
-  def future?(time) do
-    diff(time, now()) > 0
-  end
 end
