@@ -3,10 +3,10 @@ defmodule Steve.Storage.Redis.Atomic do
 
   alias Steve.Storage.Redis.Pool
 
-  @private :code.priv_dir(:steve)
-  @dequeue "10f40f427e58be26e8c82d399fa3b2220f716748"
-  @expired "10f40f427e58be26e8c82d399fa3b2220f716748"
-  @recover "10f40f427e58be26e8c82d399fa3b2220f716748"
+  @private Path.join(:code.priv_dir(:steve), "redis")
+  @dequeue "a4c1cb2b35ca2479f935fa8cb906cc0a45df0f59"
+  @expired "8477882aa6f6448412f85cc6e134659cea9c66d8"
+  @recover "5b12847fddb9fbb655e94d2ae120824252491d48"
 
   def dequeue(from, score, node, count) do
     eval = ["EVALSHA", @dequeue, 3, from, score, node, count]
