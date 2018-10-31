@@ -28,7 +28,6 @@ defmodule Steve.MixProject do
   defp deps do
     [
       {:ecto, "~> 2.2"},
-      {:jason, "~> 1.1"},
       {:redix, "~> 0.8.2"},
       {:poolboy, "~> 1.5"},
       {:ex_doc, "~> 0.19.1", only: :dev}
