@@ -28,12 +28,7 @@ defmodule Steve.Storage.Ecto.Status do
   end
   def load(_other), do: :error
 
-  def dump(term) when is_integer(term) do
-    cond do
-      :error = cast(term) ->
-        :error
-      true ->
-        {:ok, term}
-    end
+  def dump(term) do
+    cast(term)
   end
 end
