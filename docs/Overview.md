@@ -37,9 +37,7 @@ desired storage adapter. One may find more information on
 this on the adapter's documentation page.
 
 Once these steps are completed, one may configure their
-application to subscribe to the desired queues automatically.
-This can be done by adding the following configuration parameter
-to their application:
+application to subscribe to the desired queues.
 
 ```elixir
 config :steve, :queues,

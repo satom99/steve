@@ -21,9 +21,9 @@ defmodule Steve.Storage.Ecto do
 
   ### Migrations
 
-  In order to create the table that is to be used by the library,
-  one may run the migrations that ship with the library by running
-  both `mix ecto.create` and `mix ecto.migrate` directly at the
+  In order to ensure that the table that is to be used by the library
+  is present, one may run the migrations that ship with the library by
+  issuing `mix steve.ecto.migrate` directly at the
   application's root directory.
   """
 
