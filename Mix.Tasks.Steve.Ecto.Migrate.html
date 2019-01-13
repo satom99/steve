@@ -5,12 +5,12 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.19.1">
-    <title>Steve.Storage.Redis – steve v0.1.0</title>
+    <title>steve.ecto.migrate – steve v0.1.0</title>
     <link rel="stylesheet" href="dist/app-240d7fc7e5.css" />
-    <script src="dist/sidebar_items-3a246996ae.js"></script>
+    <script src="dist/sidebar_items-ccd9c5f698.js"></script>
     
   </head>
-  <body data-type="modules">
+  <body data-type="tasks">
     <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
     <div class="main">
 <button class="sidebar-button sidebar-toggle">
@@ -46,6 +46,7 @@ steve      </h1>
       <li><a id="modules-list" href="#full-list">Modules</a></li>
 
 
+      <li><a id="tasks-list" href="#full-list">Mix Tasks</a></li>
   </ul>
   <div class="gradient"></div>
   <ul id="full-list" class="sidebar-fullList"></ul>
@@ -58,8 +59,8 @@ steve      </h1>
 
       <h1>
         <small class="visible-xs">steve v0.1.0</small>
-Steve.Storage.Redis        
-          <a href="https://github.com/satom99/steve/blob/master/lib/steve/storage/redis.ex#L1" title="View Source" class="view-source" rel="help">
+mix steve.ecto.migrate        
+          <a href="https://github.com/satom99/steve/blob/master/lib/steve/storage/ecto/task.ex#L1" title="View Source" class="view-source" rel="help">
             <span class="icon-code" aria-hidden="true"></span>
             <span class="sr-only">View Source</span>
           </a>
@@ -67,22 +68,7 @@ Steve.Storage.Redis
 
 
         <section id="moduledoc">
-<p>A storage adapter that uses Redix to interact with redis.</p>
-<h3 id="module-configuration" class="section-heading">
-  <a href="#module-configuration" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
-  Configuration
-</h3>
-
-<p>The application must be configured as shown below.</p>
-<pre><code class="nohighlight makeup elixir"><span class="n">config</span><span class="w"> </span><span class="ss">:steve</span><span class="p">,</span><span class="w">
-</span><span class="p" data-group-id="3057546020-1">[</span><span class="w">
-  </span><span class="ss">storage</span><span class="p">:</span><span class="w"> </span><span class="nc">Steve.Storage.Redis</span><span class="p">,</span><span class="w">
-  </span><span class="ss">pool_size</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="c1"># optional</span><span class="w">
-  </span><span class="ss">redix</span><span class="p">:</span><span class="w"> </span><span class="o">&lt;</span><span class="n">term</span><span class="o">&gt;</span><span class="w">
-</span><span class="p" data-group-id="3057546020-1">]</span></code></pre>
-<p>Where <code class="inline">redix</code> should be valid arguments for <a href="https://hexdocs.pm/redix/0.8.2/Redix.html#start_link/1"><code class="inline">Redix.start_link/1</code></a>
-and <code class="inline">pool_size</code> an integer indicating the number of active
-connections to the redis server the pool should have.</p>
+<p>Refer to <a href="Steve.Storage.Ecto.html"><code class="inline">Steve.Storage.Ecto</code></a> for more information.</p>
         </section>
 
 

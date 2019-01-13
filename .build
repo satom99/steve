@@ -4,7 +4,7 @@ fonts/icomoon.eot
 fonts/icomoon.svg
 fonts/icomoon.ttf
 fonts/icomoon.woff
-dist/sidebar_items-3a246996ae.js
+dist/sidebar_items-ccd9c5f698.js
 api-reference.html
 overview.html
 search.html
@@ -13,6 +13,6 @@ Steve.html
 Steve.Job.html
 Steve.Queue.html
 Steve.Storage.Ecto.html
-Steve.Storage.Redis.html
 Steve.Worker.html
+Mix.Tasks.Steve.Ecto.Migrate.html
 index.html

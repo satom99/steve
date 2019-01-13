@@ -7,7 +7,7 @@
     <meta name="generator" content="ExDoc v0.19.1">
     <title>Steve.Storage.Ecto – steve v0.1.0</title>
     <link rel="stylesheet" href="dist/app-240d7fc7e5.css" />
-    <script src="dist/sidebar_items-3a246996ae.js"></script>
+    <script src="dist/sidebar_items-ccd9c5f698.js"></script>
     
   </head>
   <body data-type="modules">
@@ -46,6 +46,7 @@ steve      </h1>
       <li><a id="modules-list" href="#full-list">Modules</a></li>
 
 
+      <li><a id="tasks-list" href="#full-list">Mix Tasks</a></li>
   </ul>
   <div class="gradient"></div>
   <ul id="full-list" class="sidebar-fullList"></ul>
@@ -85,19 +86,19 @@ Steve.Storage.Ecto
 
 <p>The application must be configured as shown below.</p>
 <pre><code class="nohighlight makeup elixir"><span class="n">config</span><span class="w"> </span><span class="ss">:steve</span><span class="p">,</span><span class="w">
-</span><span class="p" data-group-id="5236873353-1">[</span><span class="w">
+</span><span class="p" data-group-id="5330114303-1">[</span><span class="w">
   </span><span class="ss">storage</span><span class="p">:</span><span class="w"> </span><span class="nc">Steve.Storage.Ecto</span><span class="p">,</span><span class="w">
-  </span><span class="ss">ecto_repos</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5236873353-2">[</span><span class="nc">Example.Repo</span><span class="p" data-group-id="5236873353-2">]</span><span class="w">
-</span><span class="p" data-group-id="5236873353-1">]</span></code></pre>
+  </span><span class="ss">ecto_repos</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="5330114303-2">[</span><span class="nc">Example.Repo</span><span class="p" data-group-id="5330114303-2">]</span><span class="w">
+</span><span class="p" data-group-id="5330114303-1">]</span></code></pre>
 <p>Where <code class="inline">Example.Repo</code> should be a valid <a href="https://hexdocs.pm/ecto/2.2.11/Ecto.Repo.html"><code class="inline">Ecto.Repo</code></a> instance.</p>
 <h3 id="module-migrations" class="section-heading">
   <a href="#module-migrations" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Migrations
 </h3>
 
-<p>In order to create the table that is to be used by the library,
-one may run the migrations that ship with the library by running
-both <code class="inline">mix ecto.create</code> and <code class="inline">mix ecto.migrate</code> directly at the
+<p>In order to ensure that the table that is to be used by the library
+is present, one may run the migrations that ship with the library by
+issuing <code class="inline">mix steve.ecto.migrate</code> directly at the
 application’s root directory.</p>
         </section>
 
