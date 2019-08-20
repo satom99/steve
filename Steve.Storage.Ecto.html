@@ -65,7 +65,11 @@ steve      </a>
 
       <h1>
         <small class="app-vsn">steve v0.1.0</small>
-Steve.Storage.Ecto      </h1>
+Steve.Storage.Ecto          <a href="https://github.com/satom99/steve/blob/master/lib/steve/storage/ecto.ex#L1" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+      </h1>
 
 
         <section id="moduledoc">
@@ -77,10 +81,10 @@ Steve.Storage.Ecto      </h1>
 
 <p>The application must be configured as shown below.</p>
 <pre><code class="nohighlight makeup elixir"><span class="n">config</span><span class="w"> </span><span class="ss">:steve</span><span class="p">,</span><span class="w">
-</span><span class="p" data-group-id="9507004157-1">[</span><span class="w">
+</span><span class="p" data-group-id="9728948099-1">[</span><span class="w">
     </span><span class="ss">storage</span><span class="p">:</span><span class="w"> </span><span class="nc">Steve.Storage.Ecto</span><span class="p">,</span><span class="w">
     </span><span class="ss">repository</span><span class="p">:</span><span class="w"> </span><span class="nc">Example.Repo</span><span class="w">
-</span><span class="p" data-group-id="9507004157-1">]</span></code></pre>
+</span><span class="p" data-group-id="9728948099-1">]</span></code></pre>
 <p>Where <code class="inline">Example.Repo</code> should be a valid <a href="https://hexdocs.pm/ecto/3.1.7/Ecto.Repo.html"><code class="inline">Ecto.Repo</code></a> instance.</p>
 <h3 id="module-migrations" class="section-heading">
   <a href="#module-migrations" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
@@ -88,11 +92,11 @@ Steve.Storage.Ecto      </h1>
 </h3>
 
 <p>One must also define the following migration within their application.</p>
-<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Example.Repo.Migrations.Steve</span><span class="w"> </span><span class="k" data-group-id="4947528005-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Example.Repo.Migrations.Steve</span><span class="w"> </span><span class="k" data-group-id="2705436330-1">do</span><span class="w">
     </span><span class="kn">use</span><span class="w"> </span><span class="nc">Ecto.Migration</span><span class="w">
 
     </span><span class="kd">defdelegate</span><span class="w"> </span><span class="n">change</span><span class="p">,</span><span class="w"> </span><span class="ss">to</span><span class="p">:</span><span class="w"> </span><span class="nc">Steve.Storage.Ecto.Migration</span><span class="w">
-</span><span class="k" data-group-id="4947528005-1">end</span></code></pre>
+</span><span class="k" data-group-id="2705436330-1">end</span></code></pre>
         </section>
 
         <section id="summary" class="details-list">
@@ -155,6 +159,10 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">ack!(job)</h1>
+      <a href="https://github.com/satom99/steve/blob/master/lib/steve/storage/ecto.ex#L78" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
   </div>
   <section class="docstring">
 <p>Called after a job has been performed successfully.</p>
@@ -168,6 +176,10 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">dequeue(queue, count)</h1>
+      <a href="https://github.com/satom99/steve/blob/master/lib/steve/storage/ecto.ex#L49" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
   </div>
   <section class="docstring">
 <p>Called to dequeue a specific amount of jobs.</p>
@@ -181,6 +193,10 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">enqueue(job, time)</h1>
+      <a href="https://github.com/satom99/steve/blob/master/lib/steve/storage/ecto.ex#L34" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
   </div>
   <section class="docstring">
 <p>Called to enqueue a given job to be performed at a specific time.</p>
@@ -194,6 +210,10 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">recover!(queue)</h1>
+      <a href="https://github.com/satom99/steve/blob/master/lib/steve/storage/ecto.ex#L110" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
   </div>
   <section class="docstring">
 <p>Called upon start to hopefully recover orphaned jobs.</p>
@@ -207,6 +227,10 @@ Functions          </h1>
       <span class="sr-only">Link to this function</span>
     </a>
     <h1 class="signature">retry!(job)</h1>
+      <a href="https://github.com/satom99/steve/blob/master/lib/steve/storage/ecto.ex#L88" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
   </div>
   <section class="docstring">
 <p>Called after an error is encountered when performing a job.</p>
