@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.21.1">
     <meta name="project" content="steve v0.1.0">
-    <title>Steve.Worker — steve v0.1.0</title>
+    <title>Steve.Storage — steve v0.1.0</title>
     <link rel="stylesheet" href="dist/html-9914b37a220eb2c313b6.css" />
     <script src="dist/sidebar_items-40b38dd428.js"></script>
       <script src="docs_config.js"></script>
@@ -65,12 +65,11 @@ steve      </a>
 
       <h1>
         <small class="app-vsn">steve v0.1.0</small>
-Steve.Worker <small>behaviour</small>      </h1>
+Steve.Storage <small>behaviour</small>      </h1>
 
 
         <section id="moduledoc">
-<p>Defines a behaviour for workers to implement.</p>
-<p>Be sure to <code class="inline">use</code> this module for defaults to be injected.</p>
+<p>Defines a behaviour for storage adapters to implement.</p>
         </section>
 
         <section id="summary" class="details-list">
@@ -87,15 +86,33 @@ Steve.Worker <small>behaviour</small>      </h1>
     </h2>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#c:backoff/1">backoff(retry)</a>
+    <a href="#c:ack!/1">ack!(arg1)</a>
   </div>
-    <div class="summary-synopsis"><p>Called to determine a retry time offset in seconds.</p></div>
+    <div class="summary-synopsis"><p>Called after a job has been performed successfully.</p></div>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#c:perform/1">perform(...)</a>
+    <a href="#c:dequeue/2">dequeue(arg1, pos_integer)</a>
   </div>
-    <div class="summary-synopsis"><p>Called when a job is to be preformed.</p></div>
+    <div class="summary-synopsis"><p>Called to dequeue a specific amount of jobs.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:enqueue/2">enqueue(arg1, arg2)</a>
+  </div>
+    <div class="summary-synopsis"><p>Called to enqueue a given job to be performed at a specific time.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:recover!/1">recover!(arg1)</a>
+  </div>
+    <div class="summary-synopsis"><p>Called upon start to hopefully recover orphaned jobs.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#c:retry!/1">retry!(arg1)</a>
+  </div>
+    <div class="summary-synopsis"><p>Called after an error is encountered when performing a job.</p></div>
 </div>
   </div>
         </section>
@@ -108,36 +125,79 @@ Steve.Worker <small>behaviour</small>      </h1>
             </a>
 Callbacks          </h1>
           <div class="callbacks-list">
-<section class="detail" id="c:backoff/1">
+<section class="detail" id="c:ack!/1">
   <div class="detail-header">
-    <a href="#c:backoff/1" class="detail-link" title="Link to this callback">
+    <a href="#c:ack!/1" class="detail-link" title="Link to this callback">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this callback</span>
     </a>
-    <h1 class="signature">backoff(retry)</h1>
-      <span class="note">(optional)</span>
+    <h1 class="signature">ack!(arg1)</h1>
       <div class="specs">
-          <pre>backoff(retry :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pos_integer</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>()</pre>
+          <pre>ack!(<a href="Steve.Job.html#t:t/0">Steve.Job.t</a>()) :: :ok | <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">no_return</a>()</pre>
       </div>
   </div>
   <section class="docstring">
-<p>Called to determine a retry time offset in seconds.</p>
-<p>Check the source code for the default implementation.</p>
+<p>Called after a job has been performed successfully.</p>
   </section>
 </section>
-<section class="detail" id="c:perform/1">
+<section class="detail" id="c:dequeue/2">
   <div class="detail-header">
-    <a href="#c:perform/1" class="detail-link" title="Link to this callback">
+    <a href="#c:dequeue/2" class="detail-link" title="Link to this callback">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this callback</span>
     </a>
-    <h1 class="signature">perform(...)</h1>
+    <h1 class="signature">dequeue(arg1, pos_integer)</h1>
       <div class="specs">
-          <pre>perform(... :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">any</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">any</a>()</pre>
+          <pre>dequeue(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pos_integer</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">list</a>()</pre>
       </div>
   </div>
   <section class="docstring">
-<p>Called when a job is to be preformed.</p>
+<p>Called to dequeue a specific amount of jobs.</p>
+  </section>
+</section>
+<section class="detail" id="c:enqueue/2">
+  <div class="detail-header">
+    <a href="#c:enqueue/2" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">enqueue(arg1, arg2)</h1>
+      <div class="specs">
+          <pre>enqueue(<a href="Steve.Job.html#t:t/0">Steve.Job.t</a>(), <a href="https://hexdocs.pm/elixir/DateTime.html#t:t/0">DateTime.t</a>()) :: :ok | <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Called to enqueue a given job to be performed at a specific time.</p>
+  </section>
+</section>
+<section class="detail" id="c:recover!/1">
+  <div class="detail-header">
+    <a href="#c:recover!/1" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">recover!(arg1)</h1>
+      <div class="specs">
+          <pre>recover!(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: :ok | <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">no_return</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Called upon start to hopefully recover orphaned jobs.</p>
+  </section>
+</section>
+<section class="detail" id="c:retry!/1">
+  <div class="detail-header">
+    <a href="#c:retry!/1" class="detail-link" title="Link to this callback">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this callback</span>
+    </a>
+    <h1 class="signature">retry!(arg1)</h1>
+      <div class="specs">
+          <pre>retry!(<a href="Steve.Job.html#t:t/0">Steve.Job.t</a>()) :: :ok | <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">no_return</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Called after an error is encountered when performing a job.</p>
   </section>
 </section>
           </div>
