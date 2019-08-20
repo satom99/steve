@@ -1,80 +1,96 @@
 defmodule Steve.Storage do
-  @moduledoc false
+    @moduledoc """
+    Defines a behaviour for storage adapters to implement.
+    """
+    alias Steve.Config
+    alias Steve.Job
 
-  alias Steve.Job
-  alias Steve.{Time, Config}
-
-  def start_link(state) do
-    adapter().start_link(state)
-  end
-  def child_spec(arguments) do
-    adapter().child_spec(arguments)
-  end
-
-  def ack(job) do
-    adapter().ack(job)
-  end
-  def retry(job) do
-    adapter().retry(job)
-  end
-  def enqueue(job, time) do
-    adapter().enqueue(job, time)
-  end
-  def dequeue(queue, count) do
-    adapter().dequeue(queue, count)
-  end
-  def recover!(queue) do
-    adapter().recover!(queue)
-  end
-
-  defp adapter do
-    Config.get!(:storage)
-  end
-
-  defmacro __using__(_opts) do
-    quote do
-      @behaviour Steve.Storage
-
-      alias Steve.{Time, Config}
-      alias Steve.Job
-
-      @doc false
-      def start_link(_state) do
-        :ignore
-      end
-
-      @doc false
-      def child_spec(_options) do
-        %{
-          id: __MODULE__,
-          start: {__MODULE__, :start_link, [:!]},
-          type: :supervisor
-        }
-      end
-
-      @doc false
-      def ack(job)
-
-      @doc false
-      def retry(job)
-
-      @doc false
-      def enqueue(job, time)
-
-      @doc false
-      def dequeue(queue, count)
-
-      @doc false
-      def recover!(queue)
-
-      defoverridable [start_link: 1]
-      defoverridable [child_spec: 1]
+    @doc false
+    def start_link(state) do
+        adapter().start_link(state)
     end
-  end
 
-  @callback ack(Job.t) :: :ok | :error
-  @callback retry(Job.t) :: :ok | :error
-  @callback enqueue(Job.t, DateTime.t) :: :ok | :error
-  @callback dequeue(String.t, pos_integer) :: list | :error
-  @callback recover!(String.t) :: :ok | no_return
+    @doc false
+    def child_spec(state) do
+        adapter().child_spec(state)
+    end
+
+    @doc false
+    def ack!(job) do
+        adapter().ack!(job)
+    end
+
+    @doc false
+    def retry!(job) do
+        adapter().retry!(job)
+    end
+
+    @doc false
+    def recover!(queue) do
+        adapter().recover!(queue)
+    end
+
+    @doc false
+    def enqueue(job, time) do
+        adapter().enqueue(job, time)
+    end
+
+    @doc false
+    def dequeue(queue, count) do
+        adapter().dequeue(queue, count)
+    end
+
+    defp adapter do
+        Config.get!(:storage)
+    end
+
+    defmacro __using__(_options) do
+        quote do
+            @behaviour Steve.Storage
+
+            alias Steve.{Config, Time}
+            alias Steve.Job
+
+            @doc false
+            def start_link(_state) do
+                :ignore
+            end
+            defoverridable [start_link: 1]
+
+            @doc false
+            def child_spec(options) do
+                %{
+                    id: __MODULE__,
+                    type: :supervisor,
+                    start: {__MODULE__, :start_link, [options]}
+                }
+            end
+            defoverridable [child_spec: 1]
+        end
+    end
+
+    @doc """
+    Called after a job has been performed successfully.
+    """
+    @callback ack!(Job.t) :: :ok | no_return
+
+    @doc """
+    Called after an error is encountered when performing a job.
+    """
+    @callback retry!(Job.t) :: :ok | no_return
+
+    @doc """
+    Called upon start to hopefully recover orphaned jobs.
+    """
+    @callback recover!(String.t) :: :ok | no_return
+
+    @doc """
+    Called to enqueue a given job to be performed at a specific time.
+    """
+    @callback enqueue(Job.t, DateTime.t) :: :ok | term
+
+    @doc """
+    Called to dequeue a specific amount of jobs.
+    """
+    @callback dequeue(String.t, pos_integer) :: list
 end

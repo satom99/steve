@@ -1,34 +1,34 @@
 defmodule Steve.Storage.Ecto.Status do
-  @moduledoc false
+    @moduledoc false
 
-  @behaviour Ecto.Type
+    @behaviour Ecto.Type
 
-  @values [queued: 0, running: 1, failed: 2]
-  @atoms for {atom, int} <- @values, do: {int, atom}
+    @values [queued: 0, running: 1, failed: 2]
+    @atoms for {atom, _int} <- @values, do: atom
 
-  def type, do: :integer
+    def type, do: :integer
 
-  def cast(atom) when is_atom(atom) do
-    cond do
-      value = @values[atom] ->
-        {:ok, value}
-      true ->
-        :error
+    def cast(atom) when is_atom(atom) do
+        cond do
+            value = Keyword.get(@values, atom) ->
+                {:ok, value}
+            true ->
+                :error
+        end
     end
-  end
-  def cast(_other), do: :error
+    def cast(_other), do: :error
 
-  def load(value) when is_integer(value) do
-    cond do
-      atom = @atoms[value] ->
-        {:ok, atom}
-      true ->
-        :error
+    def load(value) when is_integer(value) do
+        cond do
+            atom = Enum.at(@atoms, value) ->
+                {:ok, atom}
+            true ->
+                :error
+        end
     end
-  end
-  def load(_other), do: :error
+    def load(_other), do: :error
 
-  def dump(term) do
-    cast(term)
-  end
+    def dump(term) do
+        load(term)
+    end
 end

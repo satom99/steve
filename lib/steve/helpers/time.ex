@@ -1,22 +1,15 @@
 defmodule Steve.Time do
-  @moduledoc false
+    @moduledoc false
 
-  import DateTime, except: [to_string: 1]
+    import DateTime
 
-  def now, do: utc_now()
+    def now, do: utc_now()
 
-  def offset_now(value) do
-    now()
-    |> to_unix(:microseconds)
-    |> :erlang.+(value * 1000000)
-    |> round
-    |> from_unix!(:microseconds)
-  end
-
-  def score(time \\ now()) do
-    time
-    |> to_unix(:microseconds)
-    |> :erlang./(1000000)
-    |> to_string
-  end
+    def offset_now(value) do
+        now()
+        |> to_unix(:microsecond)
+        |> :erlang.+(value * 1000000)
+        |> round
+        |> from_unix!(:microsecond)
+    end
 end
