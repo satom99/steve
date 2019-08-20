@@ -9,7 +9,10 @@ defmodule Steve.MixProject do
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
       deps: deps(),
-      docs: docs()
+      docs: docs(),
+      package: package(),
+      description: "An Elixir job processor.",
+      source_url: "https://github.com/satom99/steve",
     ]
   end
 
@@ -26,6 +29,14 @@ defmodule Steve.MixProject do
       {:ecto_sql, "~> 3.1"},
       {:poolboy, "~> 1.5"},
       {:ex_doc, "~> 0.21.1", only: :dev}
+    ]
+  end
+
+  defp package do
+    [
+      licenses: ["Apache-2.0"],
+      maintainers: ["Santiago Tortosa"],
+      links: %{"GitHub" => "https://github.com/satom99/steve"}
     ]
   end
 
