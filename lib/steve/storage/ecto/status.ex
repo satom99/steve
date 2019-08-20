@@ -29,6 +29,6 @@ defmodule Steve.Storage.Ecto.Status do
     def load(_other), do: :error
 
     def dump(term) do
-        load(term)
+        cast(term)
     end
 end
