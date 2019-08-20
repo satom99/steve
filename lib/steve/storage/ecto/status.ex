@@ -8,6 +8,9 @@ defmodule Steve.Storage.Ecto.Status do
 
     def type, do: :integer
 
+    def cast(value) when is_integer(value) do
+        {:ok, value}
+    end
     def cast(atom) when is_atom(atom) do
         cond do
             value = Keyword.get(@values, atom) ->
