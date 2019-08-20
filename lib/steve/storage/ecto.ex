@@ -142,9 +142,7 @@ defmodule Steve.Storage.Ecto do
     end
 
     defp repository do
-        :ecto_repos
-        |> Config.get!
-        |> List.first
+        Config.get!(:repository)
     end
 
     defp transaction(handler) do
