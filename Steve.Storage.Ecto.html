@@ -81,10 +81,10 @@ Steve.Storage.Ecto          <a href="https://github.com/satom99/steve/blob/maste
 
 <p>The application must be configured as shown below.</p>
 <pre><code class="nohighlight makeup elixir"><span class="n">config</span><span class="w"> </span><span class="ss">:steve</span><span class="p">,</span><span class="w">
-</span><span class="p" data-group-id="2853831098-1">[</span><span class="w">
+</span><span class="p" data-group-id="7223438618-1">[</span><span class="w">
     </span><span class="ss">storage</span><span class="p">:</span><span class="w"> </span><span class="nc">Steve.Storage.Ecto</span><span class="p">,</span><span class="w">
     </span><span class="ss">repository</span><span class="p">:</span><span class="w"> </span><span class="nc">Example.Repo</span><span class="w">
-</span><span class="p" data-group-id="2853831098-1">]</span></code></pre>
+</span><span class="p" data-group-id="7223438618-1">]</span></code></pre>
 <p>Where <code class="inline">Example.Repo</code> should be a valid <a href="https://hexdocs.pm/ecto/3.1.7/Ecto.Repo.html"><code class="inline">Ecto.Repo</code></a> instance.</p>
 <h3 id="module-migrations" class="section-heading">
   <a href="#module-migrations" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
@@ -92,11 +92,11 @@ Steve.Storage.Ecto          <a href="https://github.com/satom99/steve/blob/maste
 </h3>
 
 <p>One must also define the following migration within their application.</p>
-<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Example.Repo.Migrations.Steve</span><span class="w"> </span><span class="k" data-group-id="7276308165-1">do</span><span class="w">
+<pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">Example.Repo.Migrations.Steve</span><span class="w"> </span><span class="k" data-group-id="9947695546-1">do</span><span class="w">
     </span><span class="kn">use</span><span class="w"> </span><span class="nc">Ecto.Migration</span><span class="w">
 
     </span><span class="kd">defdelegate</span><span class="w"> </span><span class="n">change</span><span class="p">,</span><span class="w"> </span><span class="ss">to</span><span class="p">:</span><span class="w"> </span><span class="nc">Steve.Storage.Ecto.Migration</span><span class="w">
-</span><span class="k" data-group-id="7276308165-1">end</span></code></pre>
+</span><span class="k" data-group-id="9947695546-1">end</span></code></pre>
         </section>
 
         <section id="summary" class="details-list">
