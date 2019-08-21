@@ -26,5 +26,6 @@ defmodule Steve.Worker do
     Check the source code for the default implementation.
     """
     @callback backoff(retry :: pos_integer) :: non_neg_integer
-    @optional_callbacks [backoff: 1]
+    
+    @optional_callbacks [backoff: 1, perform: 1]
 end
