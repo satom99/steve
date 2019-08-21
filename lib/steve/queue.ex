@@ -31,7 +31,7 @@ defmodule Steve.Queue do
             {Handler, options}
         ]
         options = [
-            strategy: :one_for_one,
+            strategy: :one_for_all,
             name: name
         ]
         Supervisor.start_link(children, options)
