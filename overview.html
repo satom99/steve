@@ -98,19 +98,19 @@ to be implemented by all the job workers.
 
 <p>Currently there is no package published on Hex and
 instead one must include Steve as follows.</p>
-<pre><code class="nohighlight makeup elixir"><span class="kd">defp</span><span class="w"> </span><span class="nf">deps</span><span class="w"> </span><span class="k" data-group-id="5756907560-1">do</span><span class="w">
-  </span><span class="p" data-group-id="5756907560-2">[</span><span class="p" data-group-id="5756907560-3">{</span><span class="ss">:steve</span><span class="p">,</span><span class="w"> </span><span class="ss">git</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://github.com/satom99/steve.git&quot;</span><span class="p" data-group-id="5756907560-3">}</span><span class="p" data-group-id="5756907560-2">]</span><span class="w">
-</span><span class="k" data-group-id="5756907560-1">end</span></code></pre>
+<pre><code class="nohighlight makeup elixir"><span class="kd">defp</span><span class="w"> </span><span class="nf">deps</span><span class="w"> </span><span class="k" data-group-id="4746679386-1">do</span><span class="w">
+  </span><span class="p" data-group-id="4746679386-2">[</span><span class="p" data-group-id="4746679386-3">{</span><span class="ss">:steve</span><span class="p">,</span><span class="w"> </span><span class="ss">git</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://github.com/satom99/steve.git&quot;</span><span class="p" data-group-id="4746679386-3">}</span><span class="p" data-group-id="4746679386-2">]</span><span class="w">
+</span><span class="k" data-group-id="4746679386-1">end</span></code></pre>
 <p>Once installed, Steve must be configured according to the
 desired storage adapter. One may find more information on
 this on the adapter&#39;s documentation page.</p>
 <p>Once these steps are completed, one may configure their
 application to subscribe to the desired queues.</p>
 <pre><code class="nohighlight makeup elixir"><span class="n">config</span><span class="w"> </span><span class="ss">:steve</span><span class="p">,</span><span class="w"> </span><span class="ss">:queues</span><span class="p">,</span><span class="w">
-</span><span class="p" data-group-id="1760991594-1">[</span><span class="w">
-  </span><span class="p" data-group-id="1760991594-2">[</span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="ss">:emails</span><span class="p">,</span><span class="w"> </span><span class="ss">size</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="1760991594-2">]</span><span class="p">,</span><span class="w">
-  </span><span class="p" data-group-id="1760991594-3">[</span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="ss">:webhooks</span><span class="p">,</span><span class="w"> </span><span class="ss">size</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p" data-group-id="1760991594-3">]</span><span class="w">
-</span><span class="p" data-group-id="1760991594-1">]</span></code></pre>
+</span><span class="p" data-group-id="9052202662-1">[</span><span class="w">
+  </span><span class="p" data-group-id="9052202662-2">[</span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="ss">:emails</span><span class="p">,</span><span class="w"> </span><span class="ss">size</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p" data-group-id="9052202662-2">]</span><span class="p">,</span><span class="w">
+  </span><span class="p" data-group-id="9052202662-3">[</span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="ss">:webhooks</span><span class="p">,</span><span class="w"> </span><span class="ss">size</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p" data-group-id="9052202662-3">]</span><span class="w">
+</span><span class="p" data-group-id="9052202662-1">]</span></code></pre>
 <p>Do note as well that these keyword lists are the options that the function
 <a href="Steve.Queue.html#create/1"><code class="inline">Steve.Queue.create/1</code></a> takes in.</p>
       <footer class="footer">
