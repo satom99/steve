@@ -15,12 +15,15 @@ defmodule Steve.Config do
     end
 
     def node do
-        case get(:node) do
-            nil ->
+        cond do
+            value = get(:node) ->
+                value
+            Node.alive?() ->
+                atom = Kernel.node()
+                to_string(atom)
+            true ->
                 {:ok, name} = :inet.gethostname()
                 to_string(name)
-            value ->
-                value
         end
     end
 end
