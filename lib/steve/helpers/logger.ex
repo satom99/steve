@@ -15,10 +15,9 @@ defmodule Steve.Logger do
 
     def failed(%Job{id: id, queue: queue}, exception, stacktrace) do
         format = Exception.format(:error, exception, stacktrace)
-        warn("Job #{id} on #{queue} failed. \n #{format}")
+        error("Job #{id} on #{queue} failed. \n #{format}")
     end
 
-    defdelegate warn(message), to: Logger
     defdelegate debug(message), to: Logger
     defdelegate error(message), to: Logger
 end
