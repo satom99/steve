@@ -18,5 +18,6 @@ defmodule Steve.Storage.Ecto.Migration do
 
 			timestamps(type: :utc_datetime)
 		end
+		create unique_index(:steve, [:uuid, :status])
 	end
 end

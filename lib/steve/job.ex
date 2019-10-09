@@ -30,6 +30,6 @@ defmodule Steve.Job do
     def create(params) do
         __MODULE__
         |> struct!(params)
-        |> Map.put(:id, UUID.generate())
+        |> Map.put_new(:id, UUID.generate())
     end
 end
