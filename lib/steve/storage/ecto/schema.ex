@@ -26,5 +26,6 @@ defmodule Steve.Storage.Ecto.Schema do
         struct
         |> cast(params, fields)
         |> unique_constraint(:uuid)
+        |> unique_constraint(:uuid, name: :steve_uuid_status_index)
     end
 end
